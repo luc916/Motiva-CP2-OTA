@@ -1,11 +1,15 @@
-Verificacao da entrega local
+Verificacao final da entrega - 23/09/2026
 
-- Firmware 1.0 e 2.0: compilados com sucesso para ESP32.
-- Binarios com cabecalho ESP32 e tamanho inferior a particao OTA.
-- Hashes SHA-256 conferidos.
-- Sketch inicial Wokwi identico ao Firmware 1.0.
-- PDF: 15 paginas, revisadas visualmente, sem cortes detectados.
-- Anexos do PDF identicos aos arquivos entregues.
+- Firmware 1.0 e 2.0 compilados para ESP32.
+- Hashes SHA-256 conferidos; sketch Wokwi identico ao Firmware 1.0.
+- PDF: 21 paginas revisadas visualmente.
+- 9 anexos internos do PDF identicos aos arquivos locais.
 - Fontes completos de ambas as versoes presentes no PDF.
-- Compilacao e testes locais nao comprovam OTA remota.
-- Publicacao, LEDs no simulador e OTA ponta a ponta: pendentes.
+- OTA remota executada duas vezes no Wokwi, inclusive com o binario final corrigido.
+- Reinicio e funcionamento do Firmware 2.0 observados no monitor serial.
+- Logs reais: 13 sessoes completas verificadas quanto a media, ordenacao e estados aplicaveis.
+- Histerese e LEDs NORMAL/ALERTA demonstrados em projeto controlado separado.
+- Diagnostico de erros: sem Wi-Fi, manifesto ausente, versao atual, binario ausente e binario invalido.
+- Falhas posteriores de rede no projeto principal registradas; coleta continuou.
+- GitHub, tres projetos Wokwi, manifesto e binario acessiveis publicamente sem autenticacao.
+- Envio ao Teams nao realizado; cabe ao grupo revisar e entregar.

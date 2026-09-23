@@ -53,12 +53,13 @@ par('Ciência da Computação - 2º ano, 4º semestre<br/>Professor Marcelo Fern
 tabela([['Integrante','RM']]+D['integrantes'],[367,120])
 sub('1. Objetivo')
 par('Desenvolvemos duas versões de um programa para simular o monitoramento da altura da vegetação. O ESP32 gera cinco leituras por sessão e pode receber uma nova versão pela internet, sem acesso físico ao equipamento. A versão 2.0 acrescenta mediana e histerese ao cálculo da média.')
-sub('2. Links e situação da demonstração')
+sub('2. Projetos publicados')
 par('Repositório público: '+(link(D['repositorio_publicado']) if D['repositorio_publicado'] else '<b>pendente de publicação pelo grupo.</b>'))
 par('Projeto público Wokwi: '+(link(D['wokwi_publicado']) if D['wokwi_publicado'] else '<b>pendente de criação e publicação pelo grupo.</b>'))
-par('Endereço previsto nos arquivos: '+link(D['repositorio_previsto']), 'small')
+par('Teste controlado de histerese: '+link(D['wokwi_histerese']), 'small')
+par('Teste de erros: '+link(D['wokwi_erros']), 'small')
 par(escape(D['observacoes_demonstracao']))
-par('Esta versão registra a implementação e os testes locais. Para concluir a entrega, é necessário publicar os arquivos, executar a OTA no Wokwi e acrescentar os links e as evidências reais. Os resultados esperados não são apresentados como demonstração já realizada.','small')
+par('O projeto principal usa dados pseudoaleatórios e sessões de 48 segundos. O projeto separado de histerese usa dados fixos e sessões de 12 segundos para reproduzir os limites. Os registros de execução estão nos anexos.','small')
 sub('3. Arquitetura')
 par('ESP32 com FW 1.0 → Wokwi-GUEST → manifesto remoto → download do .bin → partição OTA → reinício → FW 2.0.')
 par('O circuito usa apenas ESP32 DevKit v1, LED RGB de cátodo comum e três resistores de 220 ohms. Não há sensor: as alturas são simuladas no programa.')
@@ -87,11 +88,11 @@ j=json.loads(manifesto)
 code('{\n  "version": "'+j['version']+'",\n  "url":\n    "'+j['url']+'"\n}')
 sub('9. Passos para executar')
 for txt in [
- '1. Publicar o repositório público no endereço previsto. Manter version.json e firmware_v2.bin na raiz da branch main e verificar as URLs diretas sem login.',
- '2. Criar um projeto ESP32 DevKit v1 no Wokwi. Copiar os quatro arquivos da pasta wokwi: sketch.ino, diagram.json, libraries.txt e partitions.csv. Salvar o projeto público.',
+ '1. Abrir o repositório indicado e conferir version.json e firmware_v2.bin na raiz da branch main. Os endereços diretos são públicos e não exigem login.',
+ '2. Abrir o projeto principal pelo link da primeira página. O circuito, a biblioteca e a tabela de partições já estão configurados. O código inicial é o firmware 1.0.',
  '3. Iniciar a simulação em FW 1.0, observar o LED azul e aguardar três sessões completas. Registrar os horários impressos no Serial Monitor a 115200 baud.',
  '4. Registrar consulta, download, sucesso da OTA e reinício automático. Confirmar FW 2.0, ordenação, mediana, histerese e mudança do LED sem substituir manualmente o código.',
- '5. Inserir links e evidências no relatório e manter o repositório e o projeto públicos por pelo menos 10 dias após a entrega.'
+ '5. Consultar os logs e as capturas nos anexos deste relatório. Manter o repositório e o projeto públicos por pelo menos 10 dias após a entrega.'
 ]: par(txt)
 sub('10. Compilação e bibliotecas')
 par('As duas versões usam o core Arduino ESP32 2.0.17, placa esp32:esp32:esp32 e ArduinoJson 7.4.2. O arquivo compilar.sh refaz os binários. As partições app0 e app1 têm 0x140000 bytes cada. O arquivo usado na OTA contém apenas a aplicação 2.0.')
@@ -99,40 +100,40 @@ par('WiFi conecta à rede; WiFiClientSecure fornece HTTPS; HTTPClient consulta o
 
 pagina();titulo('Testes e tratamento de erros')
 sub('11. Verificações realizadas')
-par('Os testes locais executaram funções extraídas dos próprios arquivos .ino com relógio e GPIO simulados. Isso verifica os cálculos, o agendamento e a decisão de iniciar OTA, mas não executa a rede, a flash ou o bootloader do ESP32.')
-tabela([['Teste','Resultado local / o que falta no Wokwi'],
- ['1. Firmware 1.0','Média, quantidade e faixa da chamada aleatória verificadas. Confirmar Serial e LED azul no Wokwi.'],
- ['2. Sessões de 48 s','Passou: inícios em 0/48000/96000/144000 ms e leituras a cada 2000 ms. Também passou no retorno de millis() a zero.'],
- ['3. Identificar versão nova','Passou: comparação numérica e disparo só após 3 sessões. Falta consulta do manifesto real.'],
- ['4. OTA e reinício em 2.0','Pendente de publicação e demonstração pela internet. Compilação não comprova gravação OTA.'],
- ['5. Média e mediana','Passou: média 15,8, mediana 15, cópia ordenada e original preservado no exemplo do enunciado.'],
- ['6. Mediana >= 16','Passou: ALERTA e comando de GPIO vermelho. Falta captura do LED no Wokwi.'],
- ['7. Faixa intermediária','Passou: 15 mantém tanto NORMAL quanto ALERTA, conforme o estado anterior.'],
- ['8. Mediana <= 14','Passou: NORMAL e comando de GPIO verde. Falta captura do LED no Wokwi.']],[142,345])
-sub('12. Erros previstos no código')
+par('A lógica foi testada localmente e a aplicação foi executada no Wokwi. A demonstração principal verifica a coleta e a atualização remota. Uma cópia separada recebe valores fixos para verificar os limites da histerese.')
+tabela([['Teste','Resultado observado'],
+ ['1. Firmware 1.0','Passou no Wokwi: cinco leituras por sessão, valores entre 10 e 20 cm, média e LED azul.'],
+ ['2. Sessões de 48 s','Passou no Wokwi: inícios em 0/48000/96000 ms e leituras a cada 2 s. O retorno de millis() a zero foi testado localmente.'],
+ ['3. Identificar versão nova','Passou no Wokwi: após a leitura em 104000 ms, consultou o GitHub e identificou a versão 2.0.'],
+ ['4. OTA e reinício em 2.0','Gravação OTA e reinício automático em 2.0 observados. Ver log da execução principal no anexo.'],
+ ['5. Média e mediana','Passou: média, vetor original, cópia ordenada e mediana exibidos após o reinício. Cálculos conferidos nos logs.'],
+ ['6. Mediana >= 16','Passou no Wokwi: mediana 16 ativa ALERTA e LED vermelho.'],
+ ['7. Faixa intermediária','Passou no teste controlado: mediana 15 mantém NORMAL e também mantém ALERTA, conforme o estado anterior.'],
+ ['8. Mediana <= 14','Passou no teste controlado: mediana 14 retorna a NORMAL; LED verde verificado.']],[142,345])
+sub('12. Tratamento de erros verificado')
 par('Sem Wi-Fi, a tentativa termina após 15 segundos com mensagem. Falhas de acesso ao manifesto mostram o código HTTP ou erro de conexão. JSON inválido é rejeitado. Versão igual, inferior ou inválida não dispara download. Falhas de download ou de gravação mostram o código e a descrição retornados por HTTPUpdate. O programa não anuncia sucesso quando a atualização falha.')
-par('O roteiro PUBLICAR-E-TESTAR.md explica como provocar cada situação em cópias de teste, sem alterar o projeto principal. Esses testes de rede e atualização ainda precisam ser executados no Wokwi.','small')
+par('Os cinco cenários foram executados no projeto separado de erros. Foram observados: falha de Wi-Fi, HTTP 404 para o manifesto, versão igual sem download, erro -102 para binário ausente e erro -106 para cabeçalho inválido. O programa continuou medindo após as falhas.','small')
 
 pagina();titulo('Arquivos e evidências locais')
 sub('13. Binário entregue')
 binario=P/'firmware_v2.bin'
 if not binario.exists(): raise SystemExit('Compile os firmwares antes de gerar o relatorio.')
 sha=hashlib.sha256(binario.read_bytes()).hexdigest()
-par('O arquivo firmware_v2.bin está incluído no pacote do projeto e como anexo interno deste PDF. Ele foi compilado a partir do código 2.0 apresentado no apêndice. A utilização efetiva desse arquivo em uma OTA remota ainda depende da demonstração.')
+par('O arquivo firmware_v2.bin está incluído no pacote do projeto e como anexo interno deste PDF. Ele foi compilado a partir do código 2.0 apresentado no apêndice. O hash abaixo permite conferir se o arquivo publicado corresponde ao binário entregue.')
 par(f'Tamanho: {binario.stat().st_size:,} bytes.'.replace(',','.'))
 par('SHA-256:','small');code(sha)
 par('Para extrair o anexo, use um leitor de PDF com painel de anexos, como Adobe Acrobat Reader. O arquivo no repositório deve ter o mesmo hash. Os fontes completos, version.json e diagram.json também estão anexados.','small')
-sub('14. Registro dos testes locais')
-for linha in (P/'evidencias/testes-locais.txt').read_text().splitlines():
-    par(escape(linha),'small')
+sub('14. Verificações locais complementares')
+par('Os testes locais passaram para média, ordenação, mediana, histerese, temporização, retorno de millis() a zero e início da consulta após três sessões. A conferência automática dos logs reais também passou para 13 sessões completas. Os registros estão na pasta evidencias.','small')
 sub('15. Compilação')
 for v in (1,2):
     log=(P/f'evidencias/compilacao-v{v}.txt').read_text()
-    resumo=[l for l in log.splitlines() if l.startswith(('Sketch uses','Global variables','Sketch usa','Variáveis globais'))]
+    resumo=[l for l in log.splitlines() if l.startswith(('Sketch uses','Sketch usa'))]
     par(f'<b>Firmware {v}.0:</b> compilado para ESP32.','small')
     for l in resumo: par(escape(l),'small')
+par('Em consultas posteriores ao reboot, também ocorreram falhas de conexão e acesso ao manifesto. Elas foram informadas no Serial e a coleta continuou. Isso não impediu a OTA já concluída. Os avisos de core dump na inicialização indicam que não foi reservada uma partição para diagnóstico de falhas; não correspondem a falha na atualização.','small')
 sub('16. Conclusão')
-par('A versão 1.0 realiza a coleta periódica e calcula a média. A versão 2.0 acrescenta a mediana e usa dois limites para evitar mudanças de estado perto de um único valor. A OTA permite levar essa evolução ao dispositivo instalado em campo. A lógica e a compilação foram verificadas localmente; a validação ponta a ponta termina com a execução remota no Wokwi.')
+par('A versão 1.0 realiza a coleta periódica e calcula a média. A versão 2.0 acrescenta a mediana e usa dois limites para evitar mudanças de estado perto de um único valor. A OTA permite levar essa evolução ao dispositivo instalado em campo. A execução no Wokwi comprovou a atualização remota e os estados do sistema. Os testes de erro também permitiram corrigir a reconexão Wi-Fi: uma tentativa anterior é encerrada antes de iniciar outra.')
 sub('Referências')
 for nome,url in [
  ('Wokwi: ESP32','https://docs.wokwi.com/guides/esp32'),
@@ -155,21 +156,34 @@ sub('partitions.csv');code((P/'wokwi/partitions.csv').read_text())
 sub('libraries.txt');code((P/'wokwi/libraries.txt').read_text())
 sub('Organização dos arquivos')
 code('Motiva-CP2-OTA/\n  version.json\n  firmware_v1.bin\n  firmware_v2.bin\n  firmware_v1/firmware_v1.ino\n  firmware_v2/firmware_v2.ino\n  wokwi/sketch.ino\n  wokwi/diagram.json\n  wokwi/libraries.txt\n  wokwi/partitions.csv\n  README.md\n  PUBLICAR-E-TESTAR.md\n  evidencias/\n  tests/testar.py\n  output/pdf/Relatorio-Motiva-CP2.pdf')
-sub('Atualização deste relatório após publicar')
-par('Preencher os links reais e as observações em dados-entrega.json. Salvar o log real como evidencias/serial-wokwi.txt e as capturas em evidencias/capturas/. Executar python3 gerar_relatorio.py e conferir o novo PDF antes de enviar pelo Teams.')
+sub('Como repetir a demonstração')
+par('Abrir o projeto principal no Wokwi e iniciar a simulação. Aguardar três sessões completas e o download do binário. O tempo de parede pode ser maior que o tempo simulado. Conferir a mensagem de sucesso e o cabeçalho FW 2.0 após o reinício. Usar a cópia de histerese para reproduzir os limites sem depender dos valores aleatórios.')
 
-serial=P/'evidencias/serial-wokwi.txt'
-if serial.exists():
-    linhas=[]
-    for l in serial.read_text().splitlines(): linhas.extend(textwrap.wrap(l,100) or [''])
-    for inicio in range(0,len(linhas),56):
-        pagina();titulo('Anexo - Serial Monitor do Wokwi');code('\n'.join(linhas[inicio:inicio+56]))
-for foto in sorted((P/'evidencias/capturas').glob('*')):
-    if foto.suffix.lower() not in ('.jpg','.jpeg','.png'): continue
-    pagina();titulo('Anexo - Demonstração no Wokwi');par(escape(foto.stem))
-    im=Image(str(foto)); escala=min(487/im.imageWidth,620/im.imageHeight)
+for nome,titulo_log in [('serial-wokwi.txt','OTA e funcionamento'),('serial-histerese.txt','Histerese'),('serial-erros.txt','Tratamento de erros')]:
+    serial=P/'evidencias'/nome
+    if serial.exists():
+        linhas=[]
+        for l in serial.read_text().splitlines():
+            if l.startswith(('ets Jul','configsip:','clk_drv:','mode:','load:','ho 0','entry ','E (')): continue
+            if l.startswith('rst:') and 'SW_CPU_RESET' not in l: continue
+            if nome=='serial-histerese.txt' and l.startswith('Sessao 5 |'): break
+            linhas.extend(textwrap.wrap(l,100) or [''])
+        while linhas and not linhas[-1].strip(): linhas.pop()
+        for inicio in range(0,len(linhas),64):
+            pagina();titulo('Anexo - '+titulo_log);par('Saída da aplicação. Log original completo disponível nos anexos internos do PDF.','small');code('\n'.join(linhas[inicio:inicio+64]))
+fotos=[f for f in sorted((P/'evidencias/capturas').glob('*')) if f.suffix.lower() in ('.jpg','.jpeg','.png')]
+legendas={
+ '01-fw1-em-execucao':'Firmware 1.0: LED azul e download remoto da versão 2.0.',
+ '02-fw2-apos-ota':'Após OTA: ordenação, mediana e LED vermelho. A consulta posterior registrou falha de rede, tratada sem parar a coleta.',
+ '03-histerese-alerta':'Teste controlado: mediana de 15 cm mantém ALERTA e LED vermelho.',
+ '04-histerese-normal':'Teste controlado: estado NORMAL e LED verde.'
+}
+for n,foto in enumerate(fotos):
+    if n%2==0: pagina();titulo('Anexo - Demonstração no Wokwi')
+    par(escape(legendas.get(foto.stem,foto.stem)),'small')
+    im=Image(str(foto));escala=min(487/im.imageWidth,280/im.imageHeight)
     im.drawWidth=im.imageWidth*escala;im.drawHeight=im.imageHeight*escala
-    story.append(im)
+    story.append(im);story.append(Spacer(1,18))
 
 def rodape(canvas,doc):
     canvas.setStrokeColor(colors.HexColor('#bbbbbb'))
@@ -181,7 +195,7 @@ buf=io.BytesIO()
 doc=SimpleDocTemplate(buf,pagesize=A4,rightMargin=54,leftMargin=54,topMargin=44,bottomMargin=55,title='Motiva - CP2: Atualização remota de firmware',author='Grupo Motiva')
 doc.build(story,onFirstPage=rodape,onLaterPages=rodape)
 writer=PdfWriter();writer.append(PdfReader(buf))
-for nome in ['firmware_v2.bin','version.json','firmware_v1/firmware_v1.ino','firmware_v2/firmware_v2.ino','wokwi/diagram.json','README.md']:
+for nome in ['firmware_v2.bin','version.json','firmware_v1/firmware_v1.ino','firmware_v2/firmware_v2.ino','wokwi/diagram.json','README.md','evidencias/serial-wokwi.txt','evidencias/serial-histerese.txt','evidencias/serial-erros.txt']:
     writer.add_attachment(Path(nome).name,(P/nome).read_bytes())
 writer.add_metadata({'/Title':'Motiva - CP2: Atualização remota de firmware','/Author':'Grupo Motiva'})
 with OUT.open('wb') as f:writer.write(f)

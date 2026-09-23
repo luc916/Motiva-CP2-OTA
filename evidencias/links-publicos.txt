@@ -1,0 +1,8 @@
+Verificacao HTTP publica, sem cookies nem autenticacao - 23/09/2026
+200 https://github.com/luc916/Motiva-CP2-OTA (291877 bytes)
+200 https://wokwi.com/projects/475988461020262401 (108904 bytes)
+200 https://wokwi.com/projects/475988911733956609 (111763 bytes)
+200 https://wokwi.com/projects/475989558168554497 (109754 bytes)
+200 https://raw.githubusercontent.com/luc916/Motiva-CP2-OTA/main/version.json (112 bytes)
+200 https://raw.githubusercontent.com/luc916/Motiva-CP2-OTA/main/firmware_v2.bin (942304 bytes)
+SHA-256 remoto/local: 6e688739974a8424185950ddda293e457e3b8d68246255a426e5382023ac88cb

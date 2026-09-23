@@ -139,4 +139,4 @@ for versao in (1,2):
         subprocess.run([compiler,'-std=c++11','-Wall','-Wextra',str(src),'-o',str(exe)],check=True)
         print(f'Firmware {versao}.0:',flush=True)
         subprocess.run([str(exe)],check=True)
-print('Todos os testes locais passaram. OTA pela internet e LEDs no Wokwi: pendentes.')
+print('Todos os testes locais passaram. Evidencias do Wokwi sao registradas separadamente.')

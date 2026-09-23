@@ -1,14 +1,34 @@
 {
   "integrantes": [
-    ["Lucas Kenzo Nishiwaki", "561325"],
-    ["Felipe Hui Hattori", "565169"],
-    ["Kauã Peres de Macedo", "563977"],
-    ["Rafael Vaz de Lima", "566429"],
-    ["André Eduardo Martins", "563297"],
-    ["Kauany Ribeiro de Moura", "564576"]
+    [
+      "Lucas Kenzo Nishiwaki",
+      "561325"
+    ],
+    [
+      "Felipe Hui Hattori",
+      "565169"
+    ],
+    [
+      "Kauã Peres de Macedo",
+      "563977"
+    ],
+    [
+      "Rafael Vaz de Lima",
+      "566429"
+    ],
+    [
+      "André Eduardo Martins",
+      "563297"
+    ],
+    [
+      "Kauany Ribeiro de Moura",
+      "564576"
+    ]
   ],
   "repositorio_previsto": "https://github.com/luc916/Motiva-CP2-OTA",
-  "repositorio_publicado": "",
-  "wokwi_publicado": "",
-  "observacoes_demonstracao": "Demonstração no Wokwi ainda não realizada. Publicação e validação dos links pendentes."
+  "repositorio_publicado": "https://github.com/luc916/Motiva-CP2-OTA",
+  "wokwi_publicado": "https://wokwi.com/projects/475988461020262401",
+  "observacoes_demonstracao": "Demonstração executada em 23/09/2026: o ESP32 iniciou em 1.0, consultou o GitHub após três sessões, gravou o firmware e reiniciou automaticamente em 2.0. A correção de reconexão Wi-Fi foi incluída e a OTA repetida com o binário final. Histerese e cinco cenários de erro também foram verificados no Wokwi.",
+  "wokwi_histerese": "https://wokwi.com/projects/475988911733956609",
+  "wokwi_erros": "https://wokwi.com/projects/475989558168554497"
 }

@@ -1,0 +1,84 @@
+Fonte: https://wokwi.com/projects/475988911733956609
+Dados fixos, sessoes de 12 s apenas para testar histerese.
+
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1156
+load:0x40078000,len:11456
+ho 0 tail 12 room 4
+load:0x40080400,len:2972
+entry 0x400805dc
+E (663) esp_core_dump_flash: No core dump partition found!
+E (664) esp_core_dump_flash: No core dump partition found!
+DIAGNOSTICO HISTERese: dados fixos; nao comprova OTA nem periodo de 48 s.
+========================================
+MONITORAMENTO DE VEGETACAO - FW 2.0
+========================================
+
+Sessao 1 | inicio relativo: 0 ms
+Leitura 1: 15 cm | t=0 ms
+Leitura 2: 14 cm | t=2000 ms
+Leitura 3: 15 cm | t=4000 ms
+Leitura 4: 16 cm | t=6000 ms
+Leitura 5: 15 cm | t=8000 ms
+Media da sessao: 15.0 cm
+Ordem original: 15 14 15 16 15 
+Ordem crescente: 14 15 15 15 16 
+Mediana: 15 cm | Estado: NORMAL
+Sessao concluida. DIAGNOSTICO: proximo inicio em 12 s apos o anterior.
+
+Sessao 2 | inicio relativo: 12000 ms
+Leitura 1: 18 cm | t=12000 ms
+Leitura 2: 16 cm | t=14000 ms
+Leitura 3: 15 cm | t=16000 ms
+Leitura 4: 16 cm | t=18000 ms
+Leitura 5: 20 cm | t=20000 ms
+Media da sessao: 17.0 cm
+Ordem original: 18 16 15 16 20 
+Ordem crescente: 15 16 16 18 20 
+Mediana: 16 cm | Estado: ALERTA
+Sessao concluida. DIAGNOSTICO: proximo inicio em 12 s apos o anterior.
+
+Sessao 3 | inicio relativo: 24000 ms
+Leitura 1: 15 cm | t=24000 ms
+Leitura 2: 14 cm | t=26000 ms
+Leitura 3: 15 cm | t=28000 ms
+Leitura 4: 16 cm | t=30000 ms
+Leitura 5: 15 cm | t=32000 ms
+Media da sessao: 15.0 cm
+Ordem original: 15 14 15 16 15 
+Ordem crescente: 14 15 15 15 16 
+Mediana: 15 cm | Estado: ALERTA
+Sessao concluida. DIAGNOSTICO: proximo inicio em 12 s apos o anterior.
+
+Sessao 4 | inicio relativo: 36000 ms
+Leitura 1: 14 cm | t=36000 ms
+Leitura 2: 10 cm | t=38000 ms
+Leitura 3: 20 cm | t=40000 ms
+Leitura 4: 12 cm | t=42000 ms
+Leitura 5: 14 cm | t=44000 ms
+Media da sessao: 14.0 cm
+Ordem original: 14 10 20 12 14 
+Ordem crescente: 10 12 14 14 20 
+Mediana: 14 cm | Estado: NORMAL
+Sessao concluida. DIAGNOSTICO: proximo inicio em 12 s apos o anterior.
+
+Sessao 5 | inicio relativo: 48000 ms
+Leitura 1: 15 cm | t=48000 ms
+Leitura 2: 14 cm | t=50000 ms
+Leitura 3: 15 cm | t=52000 ms
+Leitura 4: 16 cm | t=54000 ms
+Leitura 5: 15 cm | t=56000 ms
+Media da sessao: 15.0 cm
+Ordem original: 15 14 15 16 15 
+Ordem crescente: 14 15 15 15 16 
+Mediana: 15 cm | Estado: NORMAL
+Sessao concluida. DIAGNOSTICO: proximo inicio em 12 s apos o anterior.
+
+Sessao 6 | inicio relativo: 60000 ms
+Leitura 1: 18 cm | t=60000 ms
+Leitura 2: 16 cm | t=62000 ms

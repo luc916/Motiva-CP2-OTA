@@ -1,0 +1,4 @@
+OK: 13 sessoes completas conferidas nos logs reais; medias, vetores e medianas corretos.
+OK: consulta apos tres sessoes, OTA bem-sucedida e reboot automatico em FW 2.0.
+OK: histerese 15 NORMAL -> 16 ALERTA -> 15 ALERTA -> 14 NORMAL.
+OK: cinco cenarios de erro e continuidade das leituras apos falha OTA.

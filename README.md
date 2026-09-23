@@ -13,11 +13,16 @@ ESP32 no Wokwi, sem sensor físico. O programa simula a altura da vegetação e 
 | André Eduardo Martins | 563297 |
 | Kauany Ribeiro de Moura | 564576 |
 
-## Situação da entrega
+## Projetos publicados
 
-Os arquivos foram preparados para publicação posterior pelo grupo. O endereço configurado é `https://github.com/luc916/Motiva-CP2-OTA`, branch `main`. Esse é o endereço previsto, não uma confirmação de que o repositório já foi publicado. O link público do Wokwi ainda precisa ser criado.
+- [Demonstração principal: firmware 1.0 e atualização OTA](https://wokwi.com/projects/475988461020262401).
+- [Teste controlado de histerese](https://wokwi.com/projects/475988911733956609).
+- [Teste dos cinco cenários de erro](https://wokwi.com/projects/475989558168554497).
+- [Repositório de códigos e firmware](https://github.com/luc916/Motiva-CP2-OTA).
 
-O PDF inclui os códigos completos, o manifesto, a explicação e o resultado dos testes locais. O binário 2.0 também está anexado dentro do PDF. A comprovação da atualização pela internet deve ser acrescentada depois da demonstração. Não entregar a versão com links pendentes.
+O teste principal começa no firmware 1.0 e consulta o manifesto depois de três sessões completas. O projeto de histerese usa dados fixos e sessões de 12 segundos apenas para reproduzir os limites; ele não substitui a demonstração principal, que usa números pseudoaleatórios e sessões de 48 segundos.
+
+O PDF reúne os códigos completos, o manifesto e o binário 2.0 como anexo interno. Os logs de execução ficam em `evidencias/`. Mantenha os projetos públicos por pelo menos 10 dias após a entrega.
 
 ## Arquitetura
 
@@ -62,6 +67,12 @@ O binário para OTA é `firmware_v2.bin`, somente a aplicação. Não use bootlo
 `WiFi` conecta à rede, `WiFiClientSecure` transporta HTTPS, `HTTPClient` consulta o manifesto, `ArduinoJson` lê seus campos e `HTTPUpdate` baixa e grava a aplicação usando o mecanismo OTA do ESP32. Apenas ArduinoJson é instalada separadamente. A tarefa FreeRTOS já faz parte do core ESP32.
 
 Neste laboratório, `setInsecure()` simplifica o uso do HTTPS: há criptografia, mas o certificado do servidor não é autenticado. Uma implantação real deve validar o certificado e a autenticidade do firmware.
+
+## Validação no Wokwi
+
+A OTA foi executada duas vezes, incluindo uma execução com a correção final de reconexão. Os logs mostram a consulta depois de três sessões, a gravação e o reboot automático em FW 2.0. Foram conferidas 13 sessões completas nos logs principal e de histerese. Os cinco cenários de erro também foram executados.
+
+Os logs originais e as capturas estão em `evidencias/`. Consultas posteriores ao reboot registraram falhas de rede tratadas pelo programa, mantendo as leituras.
 
 ## Conceitos para explicar
 

@@ -1,0 +1,132 @@
+Fonte: https://wokwi.com/projects/475988461020262401
+Execucao final, firmware corrigido, 23/09/2026.
+
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1156
+load:0x40078000,len:11456
+ho 0 tail 12 room 4
+load:0x40080400,len:2972
+entry 0x400805dc
+E (784) esp_core_dump_flash: No core dump partition found!
+E (785) esp_core_dump_flash: No core dump partition found!
+========================================
+MONITORAMENTO DE VEGETACAO - FW 1.0
+========================================
+
+Sessao 1 | inicio relativo: 0 ms
+Leitura 1: 20 cm | t=10 ms
+Leitura 2: 18 cm | t=2000 ms
+Leitura 3: 18 cm | t=4000 ms
+Leitura 4: 11 cm | t=6000 ms
+Leitura 5: 19 cm | t=8000 ms
+Media da sessao: 17.2 cm
+Sessao concluida. Proximo inicio: 48 s apos o anterior.
+
+Sessao 2 | inicio relativo: 48000 ms
+Leitura 1: 18 cm | t=48000 ms
+Leitura 2: 14 cm | t=50000 ms
+Leitura 3: 20 cm | t=52000 ms
+Leitura 4: 11 cm | t=54000 ms
+Leitura 5: 18 cm | t=56000 ms
+Media da sessao: 16.2 cm
+Sessao concluida. Proximo inicio: 48 s apos o anterior.
+
+Sessao 3 | inicio relativo: 96000 ms
+Leitura 1: 12 cm | t=96000 ms
+Leitura 2: 14 cm | t=98000 ms
+Leitura 3: 19 cm | t=100000 ms
+Leitura 4: 14 cm | t=102000 ms
+Leitura 5: 15 cm | t=104000 ms
+Media da sessao: 14.8 cm
+Sessao concluida. Proximo inicio: 48 s apos o anterior.
+Conectando a rede Wokwi-GUEST...
+Wi-Fi conectado. IP: 10.10.0.2
+Consultando manifesto: https://raw.githubusercontent.com/luc916/Motiva-CP2-OTA/main/version.json
+Versao instalada: 1.0 | disponivel: 2.0
+Atualizacao disponivel. Baixando: https://raw.githubusercontent.com/luc916/Motiva-CP2-OTA/main/firmware_v2.bin
+
+Sessao 4 | inicio relativo: 144000 ms
+Leitura 1: 16 cm | t=144000 ms
+Leitura 2: 15 cm | t=146000 ms
+Leitura 3: 12 cm | t=148000 ms
+Leitura 4: 17 cm | t=150000 ms
+Leitura 5: 13 cm | t=152014 ms
+Media da sessao: 14.6 cm
+Sessao concluida. Proximo inicio: 48 s apos o anterior.
+
+Sessao 5 | inicio relativo: 192000 ms
+Leitura 1: 19 cm | t=192001 ms
+OTA gravada com sucesso. Reiniciando o ESP32...
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1156
+load:0x40078000,len:11456
+ho 0 tail 12 room 4
+load:0x40080400,len:2972
+entry 0x400805dc
+E (21943) esp_core_dump_flash: No core dump partition found!
+E (21944) esp_core_dump_flash: No core dump partition found!
+========================================
+MONITORAMENTO DE VEGETACAO - FW 2.0
+========================================
+
+Sessao 1 | inicio relativo: 0 ms
+Leitura 1: 16 cm | t=11 ms
+Leitura 2: 17 cm | t=2000 ms
+Leitura 3: 19 cm | t=4000 ms
+Leitura 4: 11 cm | t=6000 ms
+Leitura 5: 11 cm | t=8000 ms
+Media da sessao: 14.8 cm
+Ordem original: 16 17 19 11 11 
+Ordem crescente: 11 11 16 17 19 
+Mediana: 16 cm | Estado: ALERTA
+Sessao concluida. Proximo inicio: 48 s apos o anterior.
+
+Sessao 2 | inicio relativo: 48000 ms
+Leitura 1: 11 cm | t=48000 ms
+Leitura 2: 19 cm | t=50000 ms
+Leitura 3: 10 cm | t=52000 ms
+Leitura 4: 17 cm | t=54000 ms
+Leitura 5: 14 cm | t=56000 ms
+Media da sessao: 14.2 cm
+Ordem original: 11 19 10 17 14 
+Ordem crescente: 10 11 14 17 19 
+Mediana: 14 cm | Estado: NORMAL
+Sessao concluida. Proximo inicio: 48 s apos o anterior.
+
+Sessao 3 | inicio relativo: 96000 ms
+Leitura 1: 16 cm | t=96000 ms
+Leitura 2: 13 cm | t=98000 ms
+Leitura 3: 18 cm | t=100000 ms
+Leitura 4: 20 cm | t=102000 ms
+Leitura 5: 13 cm | t=104000 ms
+Media da sessao: 16.0 cm
+Ordem original: 16 13 18 20 13 
+Ordem crescente: 13 13 16 18 20 
+Mediana: 16 cm | Estado: ALERTA
+Sessao concluida. Proximo inicio: 48 s apos o anterior.
+Conectando a rede Wokwi-GUEST...
+Erro: sem conexao Wi-Fi. Tentaremos na proxima sessao.
+
+Sessao 4 | inicio relativo: 144000 ms
+Leitura 1: 16 cm | t=144000 ms
+Leitura 2: 15 cm | t=146000 ms
+Leitura 3: 19 cm | t=148000 ms
+Leitura 4: 13 cm | t=150000 ms
+Leitura 5: 13 cm | t=152000 ms
+Media da sessao: 15.2 cm
+Ordem original: 16 15 19 13 13 
+Ordem crescente: 13 13 15 16 19 
+Mediana: 15 cm | Estado: ALERTA
+Sessao concluida. Proximo inicio: 48 s apos o anterior.
+Consultando manifesto: https://raw.githubusercontent.com/luc916/Motiva-CP2-OTA/main/version.json
+Erro: manifesto inacessivel. HTTP/erro: -1

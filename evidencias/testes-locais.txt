@@ -3,4 +3,4 @@ OK: media, versoes, leituras 0/2/4/6/8 s, sessoes 48 s, rollover e OTA apos 3 se
 Firmware 2.0:
 OK: copia preservada, ordenacao, mediana, limiares 14/16, memoria em 15 e GPIO do LED.
 OK: media, versoes, leituras 0/2/4/6/8 s, sessoes 48 s, rollover e OTA apos 3 sessoes.
-Todos os testes locais passaram. OTA pela internet e LEDs no Wokwi: pendentes.
+Todos os testes locais passaram. Evidencias do Wokwi sao registradas separadamente.

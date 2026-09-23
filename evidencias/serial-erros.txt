@@ -1,0 +1,67 @@
+Diagnostico de erros executado no Wokwi em 23/09/2026.
+Projeto: https://wokwi.com/projects/475989558168554497
+
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1156
+load:0x40078000,len:11456
+ho 0 tail 12 room 4
+load:0x40080400,len:2972
+entry 0x400805dc
+E (785) esp_core_dump_flash: No core dump partition found!
+E (785) esp_core_dump_flash: No core dump partition found!
+========================================
+MONITORAMENTO DE VEGETACAO - FW 1.0
+========================================
+
+Sessao 1 | inicio relativo: 0 ms
+DIAGNOSTICO: erros de rede e OTA, sem substituir o teste principal.
+TESTE 1: SEM WI-FI
+Conectando a rede REDE-INEXISTENTE-CP2...
+Leitura 1: 15 cm | t=11 ms
+Leitura 2: 10 cm | t=2000 ms
+Leitura 3: 12 cm | t=4000 ms
+Leitura 4: 14 cm | t=6000 ms
+Leitura 5: 12 cm | t=8000 ms
+Media da sessao: 12.6 cm
+Sessao concluida. Proximo inicio: 48 s apos o anterior.
+Erro: sem conexao Wi-Fi. Tentaremos na proxima sessao.
+
+TESTE 2: https://raw.githubusercontent.com/luc916/Motiva-CP2-OTA/main/tests/ota/inexistente.json
+Conectando a rede Wokwi-GUEST...
+Wi-Fi conectado. IP: 10.10.0.2
+Consultando manifesto: https://raw.githubusercontent.com/luc916/Motiva-CP2-OTA/main/tests/ota/inexistente.json
+Erro: manifesto inacessivel. HTTP/erro: 404
+
+TESTE 3: https://raw.githubusercontent.com/luc916/Motiva-CP2-OTA/main/tests/ota/atual.json
+Consultando manifesto: https://raw.githubusercontent.com/luc916/Motiva-CP2-OTA/main/tests/ota/atual.json
+Versao instalada: 1.0 | disponivel: 1.0
+Sem atualizacao: versao atual ou remota nao superior/valida.
+
+TESTE 4: https://raw.githubusercontent.com/luc916/Motiva-CP2-OTA/main/tests/ota/bin-ausente.json
+Consultando manifesto: https://raw.githubusercontent.com/luc916/Motiva-CP2-OTA/main/tests/ota/bin-ausente.json
+Versao instalada: 1.0 | disponivel: 2.0
+Atualizacao disponivel. Baixando: https://raw.githubusercontent.com/luc916/Motiva-CP2-OTA/main/tests/ota/arquivo-inexistente.bin
+Erro no download/gravação OTA: -102 - File Not Found (404)
+Firmware atual mantido. Nova tentativa na proxima sessao.
+
+TESTE 5: https://raw.githubusercontent.com/luc916/Motiva-CP2-OTA/main/tests/ota/bin-invalido.json
+Consultando manifesto: https://raw.githubusercontent.com/luc916/Motiva-CP2-OTA/main/tests/ota/bin-invalido.json
+Versao instalada: 1.0 | disponivel: 2.0
+Atualizacao disponivel. Baixando: https://raw.githubusercontent.com/luc916/Motiva-CP2-OTA/main/tests/ota/invalido.bin
+
+Sessao 2 | inicio relativo: 48000 ms
+Leitura 1: 17 cm | t=48000 ms
+Leitura 2: 17 cm | t=50000 ms
+Erro no download/gravação OTA: -106 - Verify Bin Header Failed
+Firmware atual mantido. Nova tentativa na proxima sessao.
+DIAGNOSTICO CONCLUIDO: verificar cada mensagem acima.
+Leitura 3: 19 cm | t=52000 ms
+Leitura 4: 16 cm | t=54000 ms
+Leitura 5: 16 cm | t=56000 ms
+Media da sessao: 17.0 cm
+Sessao concluida. Proximo inicio: 48 s apos o anterior.
