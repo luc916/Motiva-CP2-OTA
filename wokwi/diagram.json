@@ -1,0 +1,107 @@
+{
+  "version": 1,
+  "author": "Grupo Motiva",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-esp32-devkit-v1",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-rgb-led",
+      "id": "rgb",
+      "top": -70,
+      "left": 220,
+      "attrs": {
+        "common": "cathode"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r0",
+      "top": 0,
+      "left": 190,
+      "attrs": {
+        "value": "220"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 50,
+      "left": 190,
+      "attrs": {
+        "value": "220"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 100,
+      "left": 190,
+      "attrs": {
+        "value": "220"
+      }
+    }
+  ],
+  "connections": [
+    [
+      "esp:TX0",
+      "$serialMonitor:RX",
+      "",
+      []
+    ],
+    [
+      "esp:RX0",
+      "$serialMonitor:TX",
+      "",
+      []
+    ],
+    [
+      "rgb:COM",
+      "esp:GND.1",
+      "black",
+      []
+    ],
+    [
+      "esp:D25",
+      "r0:1",
+      "red",
+      []
+    ],
+    [
+      "r0:2",
+      "rgb:R",
+      "red",
+      []
+    ],
+    [
+      "esp:D26",
+      "r1:1",
+      "green",
+      []
+    ],
+    [
+      "r1:2",
+      "rgb:G",
+      "green",
+      []
+    ],
+    [
+      "esp:D27",
+      "r2:1",
+      "blue",
+      []
+    ],
+    [
+      "r2:2",
+      "rgb:B",
+      "blue",
+      []
+    ]
+  ],
+  "dependencies": {}
+}

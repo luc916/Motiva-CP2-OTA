@@ -1,0 +1,11 @@
+Verificacao da entrega local
+
+- Firmware 1.0 e 2.0: compilados com sucesso para ESP32.
+- Binarios com cabecalho ESP32 e tamanho inferior a particao OTA.
+- Hashes SHA-256 conferidos.
+- Sketch inicial Wokwi identico ao Firmware 1.0.
+- PDF: 15 paginas, revisadas visualmente, sem cortes detectados.
+- Anexos do PDF identicos aos arquivos entregues.
+- Fontes completos de ambas as versoes presentes no PDF.
+- Compilacao e testes locais nao comprovam OTA remota.
+- Publicacao, LEDs no simulador e OTA ponta a ponta: pendentes.
