@@ -119,7 +119,9 @@ bool versaoMaisNova(const char* remota, const char* local) {
 
 bool conectarWiFi() {
   if (WiFi.status() == WL_CONNECTED) return true;
-  Serial.println("Conectando a rede Wokwi-GUEST...");
+  Serial.printf("Conectando a rede %s...\n", REDE);
+  WiFi.disconnect(); // Encerra uma tentativa anterior que ainda esteja ativa.
+  delay(100);
   WiFi.mode(WIFI_STA);
   WiFi.begin(REDE, "", 6);
   uint32_t inicio = millis();
